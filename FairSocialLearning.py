@@ -1766,7 +1766,7 @@ def experiment9():
     sims_iucb = Parallel(n_jobs=N_JOBS)( [delayed(run_sim)(sims_iucb[r], rss[r+R]) for r in range(R)] ) #parallel computation
     output_to_pickle("experiment9.pickle", (sims_ucb, sims_iucb))
 
-    # The followings are for plotting
+    # plotting starts here
     all_regret_ucb = np.zeros( (R,N) )
     all_draw2_ucb = np.zeros( (R,N) )
     all_subsidy_ucb = np.zeros( (R,N) )
