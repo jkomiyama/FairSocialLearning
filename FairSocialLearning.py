@@ -1755,7 +1755,7 @@ def experiment9():
     else:
         N = 5000
         R = 5
-    print(f"N={N}")
+    #print(f"N={N}")
 
     # simulation
     rss = np.random.randint(np.iinfo(np.int32).max, size=R*10)

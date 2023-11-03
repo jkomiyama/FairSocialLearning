@@ -38,4 +38,4 @@ to match the name of the files to the name of the pdfs in the paper. Figures[1--
 
 # Environments
 
-The codes are tested on Python 3.10.6. It takes 5 hours to run each symmetric or asymmetric simulation of full scale on a modern desktop with 24-core CPU (48-core hyperthreading). We do not use any GPGPU.
+The codes are tested on Python 3.11 with numpy, scipy, and joblib libraries. The version of the Python and installed libraries are found in environment.yaml. It takes 5 hours to run each symmetric or asymmetric simulation of full scale on a modern desktop with 24-core CPU (48-core hyperthreading). We do not use any GPGPU.
