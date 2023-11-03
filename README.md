@@ -26,4 +26,16 @@ To replicate the results with asymmetric models (Figs 15--) , run
 python FairSocialLearning.py --size=full --asymmetric
 ```
 
+# Result files
+
 PDF files are created at figures/ and figures/asymmetric directories.
+
+After running full simulation (output PDFs are created in directories "figures" and "figures_asymmetric"), run
+```
+python RenameCopy.py
+```
+to match the name of the files to the name of the pdfs in the paper. Figures[1--20].pdf will be in the current directory
+
+# Environments
+
+The codes are tested on Python 3.10.6. It takes 5 hours to run each symmetric or asymmetric simulation of full scale on a modern desktop with 24-core CPU (48-core hyperthreading). We do not use any GPGPU.
