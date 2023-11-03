@@ -70,7 +70,7 @@ lmd = 1 #lambda
 N_SWITCH = 50 #rooney->greedy: switch timing
 IUCB_THRESHOLD = 0.5 #Hybrid parameter
 run_full = False
-run_middle = True
+run_middle = False
 save_img = True
 def is_colab():
     try:
@@ -84,10 +84,12 @@ if args.size == "full": # full run
     print("full simulation")
     R = 4000
     N = 1000
+    run_full = True
 elif args.size == "middle": # middle-size run
     print("middle-scale simulation")
     R = 1000
     N = 1000
+    run_middle = True
 else: # very short run for debug
     print("debug (short) simulation")
     R = 10
@@ -1703,10 +1705,6 @@ def experiment7():
 
 np.random.seed(8)
 experiment7()
-#assert(False)
-
-
-# In[ ]:
 
 
 # PU as a function of K1 (majority pop)
@@ -1757,6 +1755,7 @@ def experiment9():
     else:
         N = 5000
         R = 5
+    print(f"N={N}")
 
     # simulation
     rss = np.random.randint(np.iinfo(np.int32).max, size=R*10)
