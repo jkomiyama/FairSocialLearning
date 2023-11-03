@@ -151,12 +151,12 @@ class Simulation:
     def __init__(self, Kg, N0, N=N, theta_pars = None, sigma_eta = 1, iucb_threshold = IUCB_THRESHOLD,
                  policy = "greedy", count_ws_regret = False, n_switch = -1, mu_x_diff = False):
         self.rng = np.random
-        self.Kg = Kg
+        self.Kg = Kg # Num of candidate for each group
         self.N0 = N0
         self.N = N
         self.Ng = len(self.Kg) # Num of groups.
         self.K = np.sum(self.Kg)
-        self.iucb_threshold = iucb_threshold
+        self.iucb_threshold = iucb_threshold #iucb = Hybrid in the paper
         self.initial_order = self.rng.permutation(range(self.K)) #initial sample order (shuffled)
         if theta_pars == None:
             self.thetas = [1 * np.ones(d) for g in range(self.Ng)] # theta = (1,1,..) 
