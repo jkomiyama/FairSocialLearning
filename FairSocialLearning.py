@@ -79,6 +79,7 @@ def is_colab():
     except:
         return False
 
+# Scale of simulation
 if args.size == "full": # full run
     print("full simulation")
     R = 4000
@@ -92,7 +93,7 @@ else: # very short run for debug
     R = 10
     N = 300
 
-# matplotlib params
+# matplotlib params for plotting
 Alpha = 0.2
 Capsize = 10
 COLOR_UCB = "tab:blue"
@@ -449,15 +450,6 @@ def output_to_pickle(filename, data):
         pickle.dump(data, open( os.path.join(pickle_dir, filename), "wb" ) )
 
 
-# In[2]:
-
-
-# The following runs each simulation
-
-
-# In[3]:
-
-
 # LF versus UCB
 def experiment1():
     Kg = (10, 2)
@@ -479,6 +471,7 @@ def experiment1():
         all_draw2[r] = sims[r].draws_seq[:,1]
         all_draw2_ucb[r] = sims_ucb[r].draws_seq[:,1]
 
+    #plotting
     fig = plt.figure(figsize=Figsize)
     avg_regret = np.mean(all_regret, axis=0)
     std_regret = np.std(all_regret, axis=0)
@@ -506,10 +499,6 @@ def experiment1():
 
 np.random.seed(2)
 experiment1()
-
-
-# In[4]:
-
 
 # UCB versus Hybrid
 def experiment2():
@@ -550,6 +539,7 @@ def experiment2():
         all_subsidycs_iucb[r] += sims_iucb[r].subsidycs_seq
     output_to_pickle("out/experiment2d.pickle", (all_regret_ucb, all_draw2_ucb, all_subsidy_ucb, all_subsidycs_ucb, all_regret_iucb, all_draw2_iucb, all_subsidy_iucb, all_subsidycs_iucb))
 
+    #plotting
     fig = plt.figure(figsize=Figsize)
     avg_regret_ucb = np.mean(all_regret_ucb, axis=0)
     std_regret_ucb = np.std(all_regret_ucb, axis=0)
@@ -1191,10 +1181,6 @@ def experiment3():
 np.random.seed(7)
 experiment3()
 
-
-# In[6]:
-
-
 # UCB versus Hybrid, Several different parameters of Hybrid
 def experiment4():
     Kg = (10, 2)
@@ -1257,7 +1243,8 @@ def experiment4():
         all_subsidy_iucb4[r] += sims_iucb4[r].subsidy_seq
         all_subsidycs_iucb4[r] += sims_iucb4[r].subsidycs_seq
     
-
+    #plotting starts here
+    
     # color gradation
     colors = ["tab:blue", "navy", "tab:orange", "black"]
     cmap = LinearSegmentedColormap.from_list("blueGradient", colors)
@@ -1406,8 +1393,8 @@ def experiment5():
                 if sims_iucb[r].is_perpetunderest():
                     pu_count_iucb[c_cur] += 1
     output_to_pickle("experiment5.pickle", (sims_greedy, sims_ucb, sims_iucb))
-                
-                
+
+    #plotting part starts here
     fig = plt.figure(figsize=Figsize)
     avg_regret_greedy = np.mean(all_regret_greedy, axis=0)
     std_regret_greedy = np.std(all_regret_greedy, axis=0)
@@ -1526,6 +1513,7 @@ def experiment6():
             all_draw2_greedy[r,:,i] = sims_greedy[r].draws_seq[:,1]
     output_to_pickle("experiment6.pickle", (sims, sims_greedy))
 
+    # plotting part starts here
     labels = [sigma_eta for sigma_eta in sigma_etas]
     fig = plt.figure(figsize=Figsize)
     confs = [stats.binom.interval(0.95, n=R, p=min(max(0.0001,c/R),0.9999)) for i,c in enumerate(pu_count)]
@@ -1588,10 +1576,6 @@ def experiment6():
 
 np.random.seed(6)
 experiment6()
-
-
-# In[ ]:
-
 
 # warm-start LF versus Hybrid
 def experiment7():
@@ -1759,10 +1743,6 @@ def experiment8():
 
 np.random.seed(3)
 experiment8()
-
-
-# In[ ]:
-
 
 # version of experiment 2 with N=10000
 def experiment9():
